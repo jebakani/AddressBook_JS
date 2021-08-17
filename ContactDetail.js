@@ -1,4 +1,5 @@
-class ContactDetails {
+
+class ContactDetail {
     //creating constructor to add data 
     constructor(...params) {
         this.firstName = params[0];
@@ -91,3 +92,4 @@ function CheckValidity(value, patternWord) {
         return false;
     }
 }
+module.exports={ContactDetail};
