@@ -5,7 +5,7 @@ var Continue = true;
 let AddressBookArr = new Array()
 {
     while (Continue) {
-        console.log("1.Add Address Book detail\n 2.Display Address Book\n 3.Edit detail");
+        console.log("1.Add Address Book detail\n 2.Display Address Book\n 3.Edit detail\n4.Delete Contact\n5.Count");
         let choice = prompt('Enter ur choice:');
         switch (parseInt(choice)) {
             case 1:
@@ -34,6 +34,10 @@ let AddressBookArr = new Array()
                 else {
                     DeleteContact(index);
                 }
+                break;
+            //UC6-Count contact by using reduce function
+            case 5:
+                console.log("total count of contact:"+AddressBookArr.reduce(CountOfContact,0));
                 break;
             default:
                 Continue = false;
@@ -106,4 +110,9 @@ function DeleteContact(index)
     //Uc5- deleting the contact deltai
    AddressBookArr.splice(index,1);
    console.log("Delete successful")
+}
+//function that returns the total count
+function CountOfContact(totalCount)
+{
+    return ++totalCount;
 }
