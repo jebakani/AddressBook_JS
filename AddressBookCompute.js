@@ -58,7 +58,10 @@ let AddressBookArr = new Array()
                 let state=prompt('enter the state Name:');
                 console.log("Number of person in "+city+ " is "+AddressBookArr.filter(x=>x.city==city).reduce(CountOfContact,0));
                 console.log("Number of person in "+state+ " is "+AddressBookArr.filter(x=>x.state==state).reduce(CountOfContact,0));
-                break
+                break;
+            case 8:
+                AddressBookArr.sort((a,b)=>(a.firstName > b.firstName) ? 1 : ((b.firstName > a.firstName) ? -1 : 0));
+                AddressBookArr.forEach(DisplayContact);
             default:
                 Continue = false;
                 break;
@@ -150,8 +153,5 @@ function SearchByCityOrState() {
         default:
             break;
     }
-    if(person.reduce(CountOfContact,0)==1)
-    {
-        console.log(person.toString());
-    }
+   person.forEach(DisplayContact);
 }
