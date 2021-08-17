@@ -5,7 +5,7 @@ var Continue = true;
 let AddressBookArr = new Array()
 {
     while (Continue) {
-        console.log("1.Add Address Book detail\n 2.Display Address Book\n 3.Edit detail\n4.Delete Contact\n5.Count\n6.Search a person by city or state");
+        console.log("1.Add Address Book detail\n 2.Display Address Book\n 3.Edit detail\n4.Delete Contact\n5.Count\n6.Search a person by city or state 7.Count by state or city \n 8.sort by name \n  9.sort by state city or Zipcode");
         let choice = prompt('Enter ur choice:');
         switch (parseInt(choice)) {
             case 1:
@@ -52,16 +52,20 @@ let AddressBookArr = new Array()
             case 6:
                 SearchByCityOrState();
                 break;
-                //UC10-Count the person by city or state
+            //UC10-Count the person by city or state
             case 7:
-                let city=prompt('enter the name of city');
-                let state=prompt('enter the state Name:');
-                console.log("Number of person in "+city+ " is "+AddressBookArr.filter(x=>x.city==city).reduce(CountOfContact,0));
-                console.log("Number of person in "+state+ " is "+AddressBookArr.filter(x=>x.state==state).reduce(CountOfContact,0));
+                let city = prompt('enter the name of city');
+                let state = prompt('enter the state Name:');
+                console.log("Number of person in " + city + " is " + AddressBookArr.filter(x => x.city == city).reduce(CountOfContact, 0));
+                console.log("Number of person in " + state + " is " + AddressBookArr.filter(x => x.state == state).reduce(CountOfContact, 0));
                 break;
             case 8:
-                AddressBookArr.sort((a,b)=>(a.firstName > b.firstName) ? 1 : ((b.firstName > a.firstName) ? -1 : 0));
+                AddressBookArr.sort((a, b) => (a.firstName > b.firstName) ? 1 : -1);
                 AddressBookArr.forEach(DisplayContact);
+                break;
+            case 9:
+                SortByValue();
+                break;
             default:
                 Continue = false;
                 break;
@@ -153,5 +157,25 @@ function SearchByCityOrState() {
         default:
             break;
     }
-   person.forEach(DisplayContact);
+    person.forEach(DisplayContact);
+}
+//sort by city state zipcodeS
+function SortByValue() {
+    let choice = prompt('1.by city 2.By state 3. By zip');
+    switch (parseInt(choice)) {
+        case 1:
+            AddressBookArr.sort((a, b) => (a.city > b.city) ? 1 : -1);
+            AddressBookArr.forEach(DisplayContact);
+            break;
+        case 2:
+            AddressBookArr.sort((a, b) => (a.state > b.state) ? 1 : -1);
+            AddressBookArr.forEach(DisplayContact);
+            break;
+        case 3:
+            AddressBookArr.sort((a, b) => (a.zipCode > b.zipCode) ? 1 : -1);
+            AddressBookArr.forEach(DisplayContact);
+            break;
+        default:
+            break;
+    }
 }
