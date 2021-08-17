@@ -9,7 +9,17 @@ let AddressBookArr = new Array()
         let choice = prompt('Enter ur choice:');
         switch (parseInt(choice)) {
             case 1:
-                AddDetail();
+                //UC7-Duplicate check before adding contact
+                let Name = prompt('Enter the naem to be added:')
+                //filter the array by name and count the element 
+                let duplicate = AddressBookArr.filter(x => x.firstName == Name).reduce(CountOfContact,0);
+                //if array does not contain value then add contact
+                if (duplicate == 0) {
+                    AddDetail();
+                }
+                else {
+                    console.log('Contact already available');
+                }
                 break;
             case 2:
                 AddressBookArr.forEach(DisplayContact);
@@ -26,9 +36,9 @@ let AddressBookArr = new Array()
                 }
                 break;
             case 4:
-                 deleteName=prompt('Enter the first name:');
-                let index=AddressBookArr.findIndex(x=>x.firstName==deleteName);
-                if (index==-1) {
+                deleteName = prompt('Enter the first name:');
+                let index = AddressBookArr.findIndex(x => x.firstName == deleteName);
+                if (index == -1) {
                     console.log('no contact available');
                 }
                 else {
@@ -37,7 +47,7 @@ let AddressBookArr = new Array()
                 break;
             //UC6-Count contact by using reduce function
             case 5:
-                console.log("total count of contact:"+AddressBookArr.reduce(CountOfContact,0));
+                console.log("total count of contact:" + AddressBookArr.reduce(CountOfContact, 0));
                 break;
             default:
                 Continue = false;
@@ -105,14 +115,12 @@ function EditDetails(contact) {
     }
 }
 
-function DeleteContact(index)
-{
+function DeleteContact(index) {
     //Uc5- deleting the contact deltai
-   AddressBookArr.splice(index,1);
-   console.log("Delete successful")
+    AddressBookArr.splice(index, 1);
+    console.log("Delete successful")
 }
 //function that returns the total count
-function CountOfContact(totalCount)
-{
+function CountOfContact(totalCount) {
     return ++totalCount;
 }
