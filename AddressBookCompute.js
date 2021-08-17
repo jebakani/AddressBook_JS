@@ -25,6 +25,16 @@ let AddressBookArr = new Array()
                     EditDetails(contact);
                 }
                 break;
+            case 4:
+                 deleteName=prompt('Enter the first name:');
+                let index=AddressBookArr.findIndex(x=>x.firstName==deleteName);
+                if (index==-1) {
+                    console.log('no contact available');
+                }
+                else {
+                    DeleteContact(index);
+                }
+                break;
             default:
                 Continue = false;
                 break;
@@ -89,4 +99,11 @@ function EditDetails(contact) {
     catch (e) {
         console.error(e);
     }
+}
+
+function DeleteContact(index)
+{
+    //Uc5- deleting the contact deltai
+   AddressBookArr.splice(index,1);
+   console.log("Delete successful")
 }
