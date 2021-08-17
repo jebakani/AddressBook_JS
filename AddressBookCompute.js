@@ -5,14 +5,14 @@ var Continue = true;
 let AddressBookArr = new Array()
 {
     while (Continue) {
-        console.log("1.Add Address Book detail\n 2.Display Address Book\n 3.Edit detail\n4.Delete Contact\n5.Count");
+        console.log("1.Add Address Book detail\n 2.Display Address Book\n 3.Edit detail\n4.Delete Contact\n5.Count\n6.Search a person by city or state");
         let choice = prompt('Enter ur choice:');
         switch (parseInt(choice)) {
             case 1:
                 //UC7-Duplicate check before adding contact
                 let Name = prompt('Enter the naem to be added:')
                 //filter the array by name and count the element 
-                let duplicate = AddressBookArr.filter(x => x.firstName == Name).reduce(CountOfContact,0);
+                let duplicate = AddressBookArr.filter(x => x.firstName == Name).reduce(CountOfContact, 0);
                 //if array does not contain value then add contact
                 if (duplicate == 0) {
                     AddDetail();
@@ -48,6 +48,9 @@ let AddressBookArr = new Array()
             //UC6-Count contact by using reduce function
             case 5:
                 console.log("total count of contact:" + AddressBookArr.reduce(CountOfContact, 0));
+                break;
+            case 6:
+                SearchByCityOrState();
                 break;
             default:
                 Continue = false;
@@ -123,4 +126,24 @@ function DeleteContact(index) {
 //function that returns the total count
 function CountOfContact(totalCount) {
     return ++totalCount;
+}
+function SearchByCityOrState() {
+    let choice = prompt('1.Search by city 2.Search by state');
+    let name = prompt('enter the person name:')
+    switch (parseInt(choice)) {
+        case 1:
+            let city = prompt('enter the city name');
+            var person = AddressBookArr.filter(x => x.city == city).find(x => x.name == name);
+            break;
+        case 2:
+            let state = prompt('enter the state name');
+            var person = AddressBookArr.filter(x => x.state == state).find(x => x.name == name);
+            break;
+        default:
+            break;
+    }
+    if(person.reduce(CountOfContact,0)==1)
+    {
+        console.log(person.toString());
+    }
 }
