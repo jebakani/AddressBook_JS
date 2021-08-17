@@ -52,6 +52,13 @@ let AddressBookArr = new Array()
             case 6:
                 SearchByCityOrState();
                 break;
+                //UC10-Count the person by city or state
+            case 7:
+                let city=prompt('enter the name of city');
+                let state=prompt('enter the state Name:');
+                console.log("Number of person in "+city+ " is "+AddressBookArr.filter(x=>x.city==city).reduce(CountOfContact,0));
+                console.log("Number of person in "+state+ " is "+AddressBookArr.filter(x=>x.state==state).reduce(CountOfContact,0));
+                break
             default:
                 Continue = false;
                 break;
