@@ -123,10 +123,11 @@ function DeleteContact(index) {
     AddressBookArr.splice(index, 1);
     console.log("Delete successful")
 }
-//function that returns the total count
+//function that returns the total count 
 function CountOfContact(totalCount) {
     return ++totalCount;
 }
+//Uc9-view By city or state
 function SearchByCityOrState() {
     let choice = prompt('1.Search by city 2.Search by state');
     let name = prompt('enter the person name:')
